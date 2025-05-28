@@ -1,4 +1,4 @@
-readme_content = """# S&P 500 Volatility Forecasting and Investment Strategy
+Stochastic Volatility Modelling with LSTM Networks: A Hybrid Approach for S&P 500 Index Volatility Forecasting
 
 This repository contains code and data for forecasting volatility in the S&P 500 using different modeling approaches, including Stochastic Volatility (SV), Long Short-Term Memory (LSTM) networks, and a Hybrid model. It also includes a basic investment strategy based on VIX inputs, as well as statistical tests for model comparison.
 
