@@ -13,7 +13,8 @@ This repository contains code and data for forecasting volatility in the S&P 500
 ├── data/ # Input datasets and data preparation scripts
 └── results/
 ├── hyperparameters/ # Final selected hyperparameters for models
-└── model_outputs/ # Model predictions used in the paper```
+└── model_outputs/ # Model predictions used in the paper
+```
 
 
 ---
