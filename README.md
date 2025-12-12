@@ -4,7 +4,7 @@ This repository contains code and data for forecasting volatility in the S&P 500
 
 ## Repository Structure
 
-project/
+```project/
 ├── code/
 │ ├── models/ # Main model notebooks (LSTM, Hybrid, SV)
 │ ├── sensitivity/ # Sensitivity analysis notebooks for hybrid models
@@ -13,7 +13,7 @@ project/
 ├── data/ # Input datasets and data preparation scripts
 └── results/
 ├── hyperparameters/ # Final selected hyperparameters for models
-└── model_outputs/ # Model predictions used in the paper
+└── model_outputs/ # Model predictions used in the paper```
 
 
 ---
