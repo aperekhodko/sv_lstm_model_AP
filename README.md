@@ -76,7 +76,7 @@ To reproduce the main results:
 
 1. Clone the repository:
 ```bash
-git clone [your_repo_url]
+git clone [https://github.com/aperekhodko/sv_lstm_hybrid_model]
 cd project
 
 2. Install dependencies:
