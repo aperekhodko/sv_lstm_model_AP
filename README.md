@@ -4,16 +4,19 @@ This repository contains code and data for forecasting volatility in the S&P 500
 
 ## Repository Structure
 
-- `sp500_data.csv`: Core dataset with S&P 500 data.
-- `sv.csv`: Input datasets for VIX and SV-based modeling.
-- `stochastic volatiity.R`: R script for generating Stochastic Volatility (SV) predictions.
-- `lstm/`: Folder containing pre-tuned LSTM model configurations and hyperparameters.
-- `hybrid/`: Folder containing Hybrid model configurations and hyperparameters.
-- `lstm.ipynb`: Jupyter notebook implementing LSTM model.
-- `hybrid.ipynb`: Jupyter notebook implementing Hybrid model using both SV and S&P 500 data.
-- `investment strategy.ipynb`: Implementation of a trading strategy using VIX data.
-- `stat test - sv_vs_lstm.ipynb`, `stat test_sv_lstm_vs_lstm.ipynb`, `stat test_sv_vs_sv_lstm.ipynb`: Statistical tests comparing the forecasting performance of different models.
-- `data_vix.csv`, `final_settle_df.csv`: Input data for VIX investment strategy
+project/
+├── code/
+│ ├── models/ # Main model notebooks (LSTM, Hybrid, SV)
+│ ├── sensitivity/ # Sensitivity analysis notebooks for hybrid models
+│ ├── evaluation/ # Statistical tests and metrics calculation
+│ └── strategy/ # Investment strategy simulation
+├── data/ # Input datasets and data preparation scripts
+└── results/
+├── hyperparameters/ # Final selected hyperparameters for models
+└── model_outputs/ # Model predictions used in the paper
+
+
+---
 
 ## Project Description
 
@@ -22,19 +25,58 @@ The goal of this project is to model and predict volatility in the S&P 500 index
 ### Data Sources
 
 - **S&P 500 Data** (`sp500_data.csv`): Primary market index data.
-- **SV Predictions**: Generated using the `roll final.R` script or read from `sv.csv`.
-- **VIX Input Data**: Comes from `data_vix.csv` and a`final_settle_df.csv`.
+- **SV Predictions**: Generated using `stochastic_volatility.R` or read from `results/model_outputs/sv.csv`.
+- **VIX Input Data**: Comes from `data/data_vix.csv` and `data/final_settle_df.csv`.
 
 ### Models
 
 - **Stochastic Volatility (SV)**: Implemented in R with rolling window predictions.
-- **LSTM**: Deep learning model trained on S&P 500 or combined data.
-- **Hybrid Model**: Combines SV predictions with S&P 500 data for improved accuracy.
+- **LSTM**: Deep learning model trained on S&P 500 or combined data (`code/models/lstm.ipynb`).
+- **Hybrid Model**: Combines SV predictions with S&P 500 data for improved accuracy (`code/models/hybrid.ipynb` and `code/models/hybrid_madl.ipynb`).
 
-### Strategy
+> **Note:** Hyperparameter tuning is performed internally within each model notebook. Raw tuning outputs are not included due to size. Final selected hyperparameters are provided in `results/hyperparameters/`.
 
-An investment strategy is implemented in `investment strategy.ipynb`, based on volatility predictions and VIX input data.
+### Sensitivity Analysis
+
+- Supplementary notebooks exploring model architecture and parameters are in `code/sensitivity/`.
+- These experiments are optional for reproducing the main results.
 
 ### Statistical Testing
 
-Multiple notebooks compare the prediction performance of the models using statistical hypothesis testing.
+- Statistical tests and metrics calculation are implemented in `code/evaluation/`:
+  - `metrics calc.ipynb`
+  - `stat test - sv_vs_lstm.ipynb`
+  - `stat test_sv_lstm_vs_lstm.ipynb`
+  - `stat test_sv_vs_sv_lstm.ipynb`
+- Outputs are saved in `results/model_outputs/` (LSTM, Hybrid, SV baselines).
+
+### Investment Strategy
+
+- Simulation scripts are in `code/strategy/investment_strategy.ipynb`.
+- Uses VIX signals from `code/strategy/data_vix_signals.csv`.
+- Produces results replicating the strategy described in the paper.
+
+---
+
+## Reproducibility Workflow
+
+To reproduce the main results:
+
+1. Run model notebooks in `/code/models/` (outputs are saved to `results/model_outputs/`).
+2. Run evaluation notebooks in `/code/evaluation/` to generate metrics and statistical tests.
+3. Optionally, run sensitivity analysis in `/code/sensitivity/`.
+4. Run investment strategy simulation in `/code/strategy/`.
+
+**Note:** Only final hyperparameters and model outputs are included; raw tuning results and intermediate files are excluded due to large size.
+
+---
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone [your_repo_url]
+cd project
+
+2. Install dependencies:
+pip install -r requirements.txt
